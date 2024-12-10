@@ -1,6 +1,6 @@
 import { postRouter } from "@/server/api/routers/post";
 import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
-import { userRouter } from "@/server/api/routers/user-example";
+import { userRouter } from "@/server/api/routers/user";
 import { residentRouter } from "@/server/api/routers/resident";
 import {feeRouter} from "@/server/api/routers/fee";
 import {apartmentRouter} from "@/server/api/routers/apartment";

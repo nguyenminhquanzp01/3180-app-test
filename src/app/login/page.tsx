@@ -14,6 +14,7 @@ import {useRouter} from "next/navigation";
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const session = getSession()
 
   const { register, handleSubmit, formState: { errors } } = useForm<ILogin>({
     defaultValues: {
@@ -28,8 +29,7 @@ const Login = () => {
     try {
       const result = await signIn("credentials", {
         ...values,
-        redirect: false,
-        callbackUrl: "/dashboard"
+        redirectTo:'/dashboard'
       });
 
       if (result?.error) {
