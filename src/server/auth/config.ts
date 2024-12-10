@@ -2,8 +2,12 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { type DefaultSession, type NextAuthConfig } from "next-auth";
 import Discord from "next-auth/providers/discord";
 import Google from "next-auth/providers/google";
-
+import Credentails from "next-auth/providers/credentials"
 import { db } from "@/server/db";
+import Credentials from "next-auth/providers/credentials";
+import { loginSchema } from "@/lib/validators";
+import { verify } from "argon2";
+import { TokensIcon } from "@radix-ui/react-icons";
 
 
 /**
@@ -32,7 +36,7 @@ declare module "next-auth" {
  *
  * @see https://next-auth.js.org/configuration/options
  */
-export const OAuthProviders = [
+export const Providers = [
     Discord({
         clientId: process.env.DISCORD_CLIENT_ID,
         clientSecret: process.env.DISCORD_CLIENT_SECRET
@@ -47,32 +51,59 @@ export const OAuthProviders = [
                 response_type: "code"
             }
         }
+    }),
+    Credentials({
+        credentials : {
+            email: {},
+            password: {},
+        },
+        authorize: async (credentials) =>  {
+            console.log(`credential = ${credentials.email}'\n${credentials.password}`)
+            const {email, password} = await loginSchema.parseAsync(credentials)
+            const user = await db.user.findFirst({
+                where: {
+                    email: email
+                },
+            });
+            if (!user) {
+                return null
+            }
+            const isPasswordValid = await verify(user.password as string, password);
+            
+            if (!isPasswordValid) {
+                return null;
+            }
+            else {
+                console.log(user)
+                return user
+            }    
+        }
+
     })
 ]
 
-export const    authConfig = {
-    providers: OAuthProviders,
-    //[
-
-    /**
-     * ...add more providers here.
-     *
-     * Most other providers require a bit more work than the Discord provider. For example, the
-     * GitHub provider requires you to add the `refresh_token_expires_in` field to the Account
-     * model. Refer to the NextAuth.js docs for the provider you want to use. Example:
-     *
-     * @see https://next-auth.js.org/providers/github
-     */
-    //],
+export const authConfig = {
+    secret: process.env.AUTH_SECRET,
+    providers: Providers,
     adapter: PrismaAdapter(db),
     callbacks: {
-        session: ({ session, user }) => ({
-            ...session,
-            user: {
-                ...session.user,
-                id: user.id,
-            },
-        }),
+        jwt: ({token, account, user}) => {//account and user only available 1 time when user login
+            console.log("jwt call")
+            console.log(token)
+            return token
+        },
+        session: ({ session, token }) => {
+            console.log("session call")
+            console.log(session)
+            return {
+                ...session,
+                userid: token.sub
+            }
+            // user: {
+            //     ...session.user,
+                
+            // },
+        },
         // authorized: async ({ auth }) => {
         //     // Logged in users are authenticated, otherwise redirect to login page
         //     return !!auth
@@ -92,4 +123,7 @@ export const    authConfig = {
     pages: {
         signIn: '/login',
     },
+    session: {
+        strategy: 'jwt'
+    }
 } satisfies NextAuthConfig;
