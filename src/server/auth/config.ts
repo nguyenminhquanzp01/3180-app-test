@@ -50,7 +50,7 @@ export const OAuthProviders = [
     })
 ]
 
-export const authConfig = {
+export const    authConfig = {
     providers: OAuthProviders,
     //[
 
@@ -73,8 +73,23 @@ export const authConfig = {
                 id: user.id,
             },
         }),
+        // authorized: async ({ auth }) => {
+        //     // Logged in users are authenticated, otherwise redirect to login page
+        //     return !!auth
+        // }
+        // authorized({ auth, request: { nextUrl } }) {
+        //     const isLoggedIn = !!auth?.user;
+        //     const isOnDashboard = nextUrl.pathname.startsWith('/dashboard');
+        //     if (isOnDashboard) {
+        //       if (isLoggedIn) return true;
+        //       return false; // Redirect unauthenticated users to login page
+        //     } else if (isLoggedIn) {
+        //       return Response.redirect(new URL('/dashboard', nextUrl));
+        //     }
+        //     return true;
+        //   },
     },
     pages: {
-        signIn: '/signin-example',
+        signIn: '/login',
     },
 } satisfies NextAuthConfig;

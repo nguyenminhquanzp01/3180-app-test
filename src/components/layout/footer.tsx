@@ -42,23 +42,11 @@ export default function Footer() {
               <div className="flex flex-wrap justify-center">
                 {[
                   {
-                    name: "Phạm Quang Khánh",
-                    mssv: "20224867",
-                    imgSrc: "/img/khanh-460x460.jpg",
-                    social: [{ icon: <Github />, url: "https://github.com/khanhtimn" }],
-                  },
-                  {
-                    name: "Phạm Đức Mạnh",
-                    mssv: "20225361",
-                    imgSrc: "/img/manh-460x460.jpg",
-                    social: [{ icon: <Github />, url: "https://github.com/p3dm" }],
-                  },
-                  {
-                    name: "Bùi Hoàng Anh",
-                    mssv: "20215298",
-                    imgSrc: "/img/hoangem-460x460.jpg",
-                    social: [{ icon: <Github />, url: "https://github.com/mimiceolo" }],
-                  },
+                    name: "Example",
+                    mssv: "20225221",
+                    imgSrc: "/img/google.svg",
+                    social: [{ icon: <Github />, url: "https://google.com" }],
+                  }
                 ].map((person, index) => (
                   <div
                     key={index}

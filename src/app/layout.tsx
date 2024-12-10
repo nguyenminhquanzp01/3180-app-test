@@ -6,6 +6,8 @@ import { Layout } from "@/components/layout";
 import { TRPCReactProvider } from "@/trpc/react";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "react-hot-toast";
+import { Toaster as ShadcnToaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -21,6 +23,8 @@ export default function RootLayout({
             {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem> */}
                 <Layout>
                         <TRPCReactProvider>{children}</TRPCReactProvider>
+                        <Toaster />
+                        <ShadcnToaster />
                 </Layout>
             {/* </ThemeProvider> */}
         </SessionProvider>

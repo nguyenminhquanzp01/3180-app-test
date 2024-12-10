@@ -101,7 +101,7 @@ export const ResidentForm = ({ initialData }: ResidentFormProps) => {
   const { mutate: createResident } = api.resident.create.useMutation({
     onError: (err) => {
       console.error("Create Resident Error:", err);
-      toast.error(err.message);
+      toast.error(err.message);     
     },
     onSuccess: (data) => {
       console.log("Create Resident Success:", data);
