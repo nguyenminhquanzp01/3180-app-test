@@ -81,6 +81,24 @@ const Login = () => {
                   <Image className="w-5 mr-1"
                          width={500}
                          height={500}
+                         alt="Discord"
+                         src="/img/discord.svg"
+                  />
+                  Discord
+                </Button>
+              </div>
+              <br></br>
+              <div className="btn-wrapper text-center">
+                <Button
+                  className="px-32 py-4 rounded outline-none focus:outline-none mr-1 uppercase shadow hover:shadow-md inline-flex items-center ease-linear transition-all duration-150"
+                  type="button"
+                  onClick={() => {
+                    void handleOAuthSignIn("google");
+                  }}
+                >
+                  <Image className="w-5 mr-1"
+                         width={500}
+                         height={500}
                          alt="Google"
                          src="/img/google.svg"
                   />

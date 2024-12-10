@@ -6,9 +6,11 @@ import {CloudMoon} from "lucide-react";
 import {UserNav} from "@/components/layout/user-nav";
 import {signIn, useSession} from "next-auth/react";
 import {Button} from "@/components/ui/button";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const {data: sessionData} = useSession();
+  const path = usePathname()
   return (
     <div
       className="supports-backdrop-blur:bg-background/60 fixed left-0 right-0 top-0 z-20 border-b bg-background/95 backdrop-blur">
@@ -26,7 +28,7 @@ export default function Header() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle/>
-          {sessionData?.user ? (
+          {path.includes('login') || path.includes('register') ? (<></>): sessionData?.user ? (
             <UserNav user={sessionData.user}/>
           ) : (
             <Button size="sm"
