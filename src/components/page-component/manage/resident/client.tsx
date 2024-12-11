@@ -27,7 +27,7 @@ export const ResidentClient = ({ data }: ResidentClientProps) => {
             router.push("/manage/residents/new");
           }}
         >
-          <Plus className="mr-2 h-4 w-4" /> Thêm mới
+          <Plus className="mr-2 h-4 w-4" /> Thêm mới ne
         </Button>
       </div>
       <Separator />

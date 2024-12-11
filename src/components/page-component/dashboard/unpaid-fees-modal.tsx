@@ -4,7 +4,6 @@ import { Dialog, DialogHeader, DialogContent, DialogTitle, DialogDescription } f
 import { ChevronLeftIcon, ChevronRightIcon, DoubleArrowLeftIcon, DoubleArrowRightIcon } from "@radix-ui/react-icons";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
-
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;

@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 import { Toaster as ShadcnToaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "Create T3 App",
+  title: "BLUE MOON",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 export default function RootLayout({

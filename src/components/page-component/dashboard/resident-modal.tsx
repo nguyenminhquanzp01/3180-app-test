@@ -56,7 +56,7 @@ const ResidentModal: React.FC<ModalProps> = ({ isOpen, onClose, residentList }) 
               <AccordionTrigger>{resident.name}</AccordionTrigger>
               <AccordionContent>
                 <ul className="list-disc list-inside">
-                  <li>Số điện thoại: {resident.phoneNumber}</li>
+                  <li>So dien thoai: {resident.phoneNumber}</li>
                   <li>Số căn hộ: {resident.apartmentNo}</li>
                   <li>Phương tiện: {resident.vehicle}</li>
                 </ul>

@@ -18,7 +18,7 @@ const CustomTooltip = ({ active, payload, label }: {
       <div className="bg-primary-foreground shadow-lg rounded-md p-4 border z-50">
         <div className="p-2">
           <p className="font-semibold">Tháng {label}</p>
-          <p>Tổng phí đã thu: {payload[0].value.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</p>
+          <p>Tổng: {payload[0].value.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</p>
         </div>
       </div>
     );
