@@ -10,6 +10,7 @@ import { type BuiltInProviderType } from "next-auth/providers";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import {useRouter} from "next/navigation";
+import { responseCookiesToRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -29,16 +30,14 @@ const Login = () => {
     try {
       const result = await signIn("credentials", {
         ...values,
-        redirectTo:'/dashboard'
+        // redirectTo:'',
+        redirect: false
       });
-
       if (result?.error) {
         toast.error("Đăng nhập thất bại, vui lòng thử lại!");
       } else {
           toast.success("Đăng nhập thành công!");
-          let s = await getSession();
           router.push("/");
-          console.log(s)
       }
     } catch (error) {
       toast.error("Đăng nhập thất bại, vui lòng thử lại!");

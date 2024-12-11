@@ -66,11 +66,13 @@ export const Providers = [
                 },
             });
             if (!user) {
+                console.log('user not exist')
                 return null
             }
             const isPasswordValid = await verify(user.password as string, password);
             
             if (!isPasswordValid) {
+                console.log('invalid password')
                 return null;
             }
             else {
@@ -88,13 +90,13 @@ export const authConfig = {
     adapter: PrismaAdapter(db),
     callbacks: {
         jwt: ({token, account, user}) => {//account and user only available 1 time when user login
-            console.log("jwt call")
-            console.log(token)
+            // console.log("jwt call")
+            // console.log(token)
             return token
         },
         session: ({ session, token }) => {
-            console.log("session call")
-            console.log(session)
+            // console.log("session call")
+            // console.log(session)
             return {
                 ...session,
                 userid: token.sub
