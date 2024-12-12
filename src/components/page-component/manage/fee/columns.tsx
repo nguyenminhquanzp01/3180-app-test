@@ -5,6 +5,8 @@ import { type ColumnDef } from "@tanstack/react-table";
 import {type FeeColumn} from "@/lib/validators";
 import {CellAction} from "@/components/page-component/manage/fee/cell-action";
 
+//bang thu phi 
+
 export const columns: ColumnDef<FeeColumn>[] = [
   {
     id: "select",

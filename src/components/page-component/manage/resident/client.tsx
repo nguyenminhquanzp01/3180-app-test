@@ -15,6 +15,8 @@ interface ResidentClientProps {
 export const ResidentClient = ({ data }: ResidentClientProps) => {
   const router = useRouter();
 
+  //them moi thong tin
+
   return (
     <>
       <div className="flex items-center justify-between">

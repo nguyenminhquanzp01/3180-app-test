@@ -18,7 +18,7 @@ import {type FeeColumn} from "@/lib/validators";
 interface CellActionProps {
   data: FeeColumn;
 }
-
+//cap nhat, chinh sua thong tin khoan phi
 export function CellAction({ data }: CellActionProps) {
   const router = useRouter();
   const [alertModalOpen, setAlertModalOpen] = useState(false);
@@ -46,7 +46,7 @@ export function CellAction({ data }: CellActionProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="hover:bg-secondary"
+              className="justify-center items-center hover:bg-secondary"
               onClick={() => {
                 router.push(`/manage/fee/${data.id}`);
               }}
@@ -66,7 +66,7 @@ export function CellAction({ data }: CellActionProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="hover:bg-secondary"
+              className="justify-center items-center hover:bg-secondary"
               onClick={() => {
                 setAlertModalOpen(true);
               }}

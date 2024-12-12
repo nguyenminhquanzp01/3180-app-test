@@ -85,7 +85,7 @@ const Dashboard = () => {
         <div className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mt-6">
             <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardHeader className="flex flex-row  items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   Phí đóng góp tháng {format(new Date(), 'MM/yyyy')}
                 </CardTitle>
@@ -109,22 +109,22 @@ const Dashboard = () => {
                 )}
               </CardContent>
             </Card>
-            <Card>
+            <Card className="border border-gray-500 bg-gray-500 shadow-lg">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Phí chưa thu</CardTitle>
                 <BookX className="h-4 w-4 text-muted-foreground"/>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
+              <CardContent className="">
+                <div className="space-y-2 ">
                   {isLoadingTotalUnpaidFees ? (
                     <Loading/>
                   ) : isErrorTotalUnpaidFees ? (
                     <div className="text-2xl font-bold">Error: {errorTotalUnpaidFees.message}</div>
                   ) : (
                     <div
-                      className="text-2xl font-bold">{totalUnpaidFees ? totalUnpaidFees.toLocaleString('vi-VN') + "₫" : "Không có phí quá hạn"}</div>
+                      className="text-xl font-bold">{totalUnpaidFees ? totalUnpaidFees.toLocaleString('vi-VN') + "₫" : "Không có phí quá hạn"}</div>
                   )}
-                  <Button size="sm" onClick={handleViewUnpaidFees}>
+                  <Button className = "jusitify-center items-center" size="sm" onClick={handleViewUnpaidFees}>
                     Chi tiết
                   </Button>
                 </div>
@@ -146,7 +146,7 @@ const Dashboard = () => {
                   ) : (
                     <div className="text-2xl font-bold">{residentCount}</div>
                   )}
-                  <Button size="sm" onClick={handleViewResidents}>
+                  <Button className = "jusitify-center items-center" size="sm" onClick={handleViewResidents}>
                     Chi tiết
                   </Button>
                 </div>
@@ -166,7 +166,7 @@ const Dashboard = () => {
                   ) : (
                     <div className="text-2xl font-bold">{occupiedApartments?.count ?? 0}</div>
                   )}
-                  <Button size="sm" onClick={handleViewApartments}>
+                  <Button className = "jusitify-center items-center" size="sm" onClick={handleViewApartments}>
                     Chi tiết
                   </Button>
                 </div>
@@ -174,7 +174,7 @@ const Dashboard = () => {
             </Card>
           </div>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-            <Card className="col-span-3">
+            <Card className=" col-span-3">
               <CardHeader>
                 <CardTitle>Thanh toán gần đây</CardTitle>
                 <CardDescription>

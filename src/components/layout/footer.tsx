@@ -49,12 +49,12 @@ export default function Footer() {
         className="w-8 h-8 hover:scale-110 transition transform cursor-pointer"
       />
       <img
-        src="/img/ins.png"
+        src="/img/insta1.svg"
         alt="Instagram"
         className="w-8 h-8 hover:scale-110 transition transform cursor-pointer"
       />
       <img
-        src="/img/x1.png"
+        src="/img/x3.png"
         alt="Twitter"
         className="w-8 h-8 hover:scale-110 transition transform cursor-pointer"
       />
@@ -69,9 +69,9 @@ export default function Footer() {
   <div className="w-1/3 text-center">
     <h6 className="text-lg font-semibold mb-4 text-gray-800">Get inspired</h6>
     <p className="text-gray-600 mb-4">
-      Subscribe to our newsletter for the latest updates
+      Subscribe to our newsletter for the latest update
     </p>
-    <button className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition">
+    <button className="px-6 py-2 rounded-lg shadow-md border border-black hover:bg-gray-700 ">
       Subscribe
     </button>
   </div>

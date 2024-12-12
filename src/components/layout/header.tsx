@@ -33,7 +33,9 @@ export default function Header() {
         </Link>
 
         <div className="flex items-center gap-2">
-          <ThemeToggle/>
+          
+          {/* <ThemeToggle/> */}
+
           {path.includes('login') || path.includes('register') ? (<></>): sessionData?.user ? (
             <UserNav user={sessionData.user}/>
           ) : (
@@ -46,6 +48,7 @@ export default function Header() {
             </Button>
           )}
         </div>
+
       </nav>
     </div>
   );

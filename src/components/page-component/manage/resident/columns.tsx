@@ -34,7 +34,7 @@ export const columns: ColumnDef<ResidentColumn>[] = [
   },
   {
     accessorKey: "name",
-    header: "Họ ",
+    header: "Họ và tên",
   },
   {
     accessorKey: "gender",

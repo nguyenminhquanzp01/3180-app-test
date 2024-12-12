@@ -170,6 +170,8 @@ export const ResidentForm = ({ initialData }: ResidentFormProps) => {
     deleteResident(initialData?.id as string);
   };
 
+  //form tao moi cu dan
+
   return (
     <>
       <div className="flex items-center justify-between">

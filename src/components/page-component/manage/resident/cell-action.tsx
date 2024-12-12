@@ -38,6 +38,8 @@ export function CellAction({ data }: CellActionProps) {
       },
     });
 
+// cap nhat thong tin cua cu dan
+
   return (
     <div className="flex justify-center space-x-2">
       <TooltipProvider>
