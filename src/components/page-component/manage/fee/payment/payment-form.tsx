@@ -396,7 +396,7 @@ const PaymentForm = ({initialData}: PaymentFormProps) => {
                     value={field.value ? "true" : "false"}
                     defaultValue={field.value ? "true" : "false"}
                   >
-                    <FormControl>
+                    <FormControl> 
                       <SelectTrigger>
                         <SelectValue
                           defaultValue={field.value ? "true" : "false"}
