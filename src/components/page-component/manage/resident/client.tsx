@@ -25,6 +25,7 @@ export const ResidentClient = ({ data }: ResidentClientProps) => {
           description="Danh sách cư dân trong hệ thống"
         />
         <Button
+        className="items-center justify-center"
           onClick={() => {
             router.push("/manage/residents/new");
           }}

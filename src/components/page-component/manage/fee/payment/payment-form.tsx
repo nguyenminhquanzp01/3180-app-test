@@ -405,7 +405,7 @@ const PaymentForm = ({initialData}: PaymentFormProps) => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="true">Đã thanh toán</SelectItem>
+                      <SelectItem value="true"> Đã thanh toán </SelectItem>
                       <SelectItem value="false">Chưa thanh toán</SelectItem>
                     </SelectContent>
                   </Select>

@@ -55,7 +55,7 @@ export const columns: ColumnDef<FeeColumn>[] = [
   },
   {
     accessorKey: "vehicleFee",
-    header: "Phí gửi xe",
+    header: "Phí gửi xe ne",
   },
   {
     accessorKey: "totalAmount",
@@ -72,15 +72,36 @@ export const columns: ColumnDef<FeeColumn>[] = [
   {
     accessorKey: "isPaid",
     header: "Trạng thái",
+    cell: ({ row }) => {
+      const isPaid = row.getValue("isPaid");
+      return (
+        <div
+          style={{
+            backgroundColor: isPaid ? "green" : "red",
+            color: "white",
+            padding: "8px 16px",
+            borderRadius: "8px",
+            display: "inline-block",
+            width: "100%",
+            textAlign: "center",
+          }}
+        >
+          {isPaid ? "Đã thanh toán" : "Chưa thanh toán"}
+        </div>
+      );
+    },
   },
+  
+  
   // {
-  //   accessorKey: "notes",
+  //   accessorKey: "notes",  
   //   header: "Ghi chú",
   // },
   // {
   //   accessorKey: "updateAt",
   //   header: "Cập nhật lần cuối",
   // },
+  
   {
     id: "actions",
     enableSorting: false,

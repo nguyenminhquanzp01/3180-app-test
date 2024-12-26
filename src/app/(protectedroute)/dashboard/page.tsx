@@ -20,6 +20,8 @@ import BreadCrumb from "@/components/ui/breadcrumb";
 import ResidentModal from "@/components/page-component/dashboard/resident-modal";
 import { Tabs } from "antd";
 import ResidentList from "@/components/page-component/dashboard/table-resident";
+import ApartmentList from "@/components/page-component/dashboard/table-apartment";
+import UnFeeList from "@/components/page-component/dashboard/table-unpaid-fees";
 
 const Dashboard = () => {
   const breadcrumbItems = [{ title: "", link: "" }];
@@ -198,16 +200,22 @@ const Dashboard = () => {
                         : "Không có phí quá hạn"}
                     </div>
                   )}
-                  <Button
+                  {/* <Button
                     className="justify-center items-center bg-blue-500 text-white hover:bg-blue-600"
                     size="sm"
                     onClick={handleViewUnpaidFees}
                   >
                     Chi tiết
-                  </Button>
+                  </Button> */}
                 </div>
               </CardContent>
             </Card>
+
+            <Card className="mt-10">
+              <UnFeeList apartmentList={[]} />
+            </Card>
+
+
                 </div>
               </Tabs.TabPane>
 
@@ -277,15 +285,19 @@ const Dashboard = () => {
                       {occupiedApartments?.count ?? 0}
                     </div>
                   )}
-                  <Button
+                  {/* <Button
                     className="justify-center items-center bg-blue-500 text-white hover:bg-blue-600"
                     size="sm"
                     onClick={handleViewApartments}
                   >
                     Chi tiết
-                  </Button>
+                  </Button> */}
                 </div>
               </CardContent>
+            </Card>
+
+            <Card className="mt-10">
+              <ApartmentList apartmentList={[]} />
             </Card>
 
               </div>

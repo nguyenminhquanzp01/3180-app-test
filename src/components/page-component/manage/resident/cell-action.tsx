@@ -48,12 +48,12 @@ export function CellAction({ data }: CellActionProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="hover:bg-secondary"
+              className="items-center justify-center hover:bg-secondary"
               onClick={() => {
                 router.push(`/manage/residents/${data.id}`);
               }}
             >
-              <Pencil className="h-4 w-4 text-foreground" />
+              <Pencil className="items-center justify-center h-4 w-4 text-foreground" />
             </Button>
           </TooltipTrigger>
           <TooltipContent>
@@ -68,12 +68,12 @@ export function CellAction({ data }: CellActionProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="hover:bg-secondary"
+              className="items-center justify-center hover:bg-secondary"
               onClick={() => {
                 setAlertModalOpen(true);
               }}
             >
-              <Trash2 className="h-4 w-4 text-foreground" />
+              <Trash2 className="items-center justify-center h-4 w-4 text-foreground" />
             </Button>
           </TooltipTrigger>
           <TooltipContent>

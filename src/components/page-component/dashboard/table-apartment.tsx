@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ChevronLeftIcon, ChevronRightIcon, DoubleArrowLeftIcon, DoubleArrowRightIcon } from "@radix-ui/react-icons";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
+import { ChevronLeftIcon, ChevronRightIcon, DoubleArrowLeftIcon, DoubleArrowRightIcon } from "@radix-ui/react-icons";
 
-interface ResidentListProps {
-    isOpen: boolean;
-    onClose: () => void;
-  residentList: { id: string; name: string; phoneNumber: string; apartmentNo: number; vehicle: string }[];
+interface ApartmentListProps {
+  apartmentList: { apartmentNo: number; residents: { id: string; name: string; }[] }[];
 }
 
-const ResidentList: React.FC<ResidentListProps> = ({ residentList }) => {
+const ApartmentList: React.FC<ApartmentListProps> = ({ apartmentList }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 5;
@@ -23,8 +21,8 @@ const ResidentList: React.FC<ResidentListProps> = ({ residentList }) => {
   }
 
   const startIndex = currentPage * itemsPerPage;
-  const selectedResidents = residentList.slice(startIndex, startIndex + itemsPerPage);
-  const totalPages = Math.ceil(residentList.length / itemsPerPage);
+  const selectedApartments = apartmentList.slice(startIndex, startIndex + itemsPerPage);
+  const totalPages = Math.ceil(apartmentList.length / itemsPerPage);
 
   const handleNextPage = () => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1));
@@ -43,25 +41,23 @@ const ResidentList: React.FC<ResidentListProps> = ({ residentList }) => {
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold">Thông tin cư dân</h1>
-      <p className="text-gray-600 mb-4">Danh sách các cư dân trong hệ thống</p>
-
+    <div className="p-4">
+      <h1 className="text-xl font-bold mb-4">Thông tin căn hộ</h1>
+      <p className="mb-6">Danh sách cư dân trong căn hộ</p>
       <Accordion type="multiple">
-        {selectedResidents.map((resident) => (
-          <AccordionItem key={resident.id} value={resident.id}>
-            <AccordionTrigger>{resident.name}</AccordionTrigger>
+        {selectedApartments.map((apartment) => (
+          <AccordionItem key={apartment.apartmentNo} value={`${apartment.apartmentNo}`}>
+            <AccordionTrigger>Căn hộ số: {apartment.apartmentNo}</AccordionTrigger>
             <AccordionContent>
               <ul className="list-disc list-inside">
-                <li>Số điện thoại: {resident.phoneNumber}</li>
-                <li>Số căn hộ: {resident.apartmentNo}</li>
-                <li>Phương tiện: {resident.vehicle}</li>
+                {apartment.residents.map((resident) => (
+                  <li key={resident.id}>{resident.name}</li>
+                ))}
               </ul>
             </AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>
-
       <div className="flex justify-end items-center pt-6 space-x-2">
         <Button
           variant="outline"
@@ -88,7 +84,7 @@ const ResidentList: React.FC<ResidentListProps> = ({ residentList }) => {
           onClick={handleNextPage}
           disabled={currentPage === totalPages - 1}
         >
-          <ChevronRightIcon className="items-center justify-center h-4 w-4" />
+          <ChevronRightIcon className="h-4 w-4" />
         </Button>
         <Button
           variant="outline"
@@ -103,4 +99,4 @@ const ResidentList: React.FC<ResidentListProps> = ({ residentList }) => {
   );
 };
 
-export default ResidentList;
+export default ApartmentList;
