@@ -1,30 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronLeftIcon, ChevronRightIcon, DoubleArrowLeftIcon, DoubleArrowRightIcon } from "@radix-ui/react-icons";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
-interface ResidentListProps {
-    isOpen: boolean;
-    onClose: () => void;
-  residentList: { id: string; name: string; phoneNumber: string; apartmentNo: number; vehicle: string }[];
+interface UnFeeListProps {
+  apartmentList: { apartmentNo: number; unpaidFees: { id: string; totalAmount: number; dueDate: Date }[] }[];
 }
 
-const ResidentList: React.FC<ResidentListProps> = ({ residentList }) => {
-  const [isMounted, setIsMounted] = useState(false);
+const UnFeeList: React.FC<UnFeeListProps> = ({ apartmentList }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 5;
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return null;
-  }
-
   const startIndex = currentPage * itemsPerPage;
-  const selectedResidents = residentList.slice(startIndex, startIndex + itemsPerPage);
-  const totalPages = Math.ceil(residentList.length / itemsPerPage);
+  const selectedApartments = apartmentList.slice(startIndex, startIndex + itemsPerPage);
+  const totalPages = Math.ceil(apartmentList.length / itemsPerPage);
 
   const handleNextPage = () => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1));
@@ -43,19 +32,28 @@ const ResidentList: React.FC<ResidentListProps> = ({ residentList }) => {
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold">Thông tin cư dân</h1>
-      <p className="text-gray-600 mb-4">Danh sách các cư dân trong hệ thống</p>
+    <div className="p-4 rounded-md shadow-sm">
+      <h2 className="font-bold text-2xl mb-4">Thông tin các khoản phí chưa được thanh toán</h2>
+      <p className="mb-4">Danh sách căn hộ chưa thanh toán phí:</p>
 
       <Accordion type="multiple">
-        {selectedResidents.map((resident) => (
-          <AccordionItem key={resident.id} value={resident.id}>
-            <AccordionTrigger>{resident.name}</AccordionTrigger>
-            <AccordionContent>
-              <ul className="list-disc list-inside">
-                <li>Số điện thoại: {resident.phoneNumber}</li>
-                <li>Số căn hộ: {resident.apartmentNo}</li>
-                <li>Phương tiện: {resident.vehicle}</li>
+        {selectedApartments.map((apartment) => (
+          <AccordionItem
+            key={apartment.apartmentNo}
+            value={`${apartment.apartmentNo}`}
+            className="mb-3 border rounded-lg overflow-hidden shadow-sm"
+          >
+            <AccordionTrigger className="p-3 bg-white border-b hover:bg-gray-100">
+              Căn hộ số: {apartment.apartmentNo}
+            </AccordionTrigger>
+            <AccordionContent className="p-3 bg-gray-50">
+              <ul className="list-disc list-inside space-y-2">
+                {apartment.unpaidFees.map((fee) => (
+                  <li key={fee.id}>
+                    <span className="font-medium">{fee.totalAmount.toLocaleString('vi-VN')}₫</span> - Hạn thanh toán{' '}
+                    <span className="text-red-500">{new Date(fee.dueDate).toLocaleDateString('vi-VN')}</span>
+                  </li>
+                ))}
               </ul>
             </AccordionContent>
           </AccordionItem>
@@ -103,4 +101,4 @@ const ResidentList: React.FC<ResidentListProps> = ({ residentList }) => {
   );
 };
 
-export default ResidentList;
+export default UnFeeList;
