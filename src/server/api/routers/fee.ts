@@ -24,7 +24,7 @@ export const feeRouter = createTRPCRouter({
       notes: item.notes,
       totalAmount: item.totalAmount.toLocaleString('vi-VN') + "₫",
       dueDate: format(item.dueDate, "dd/MM/yyyy"),
-      isPaid: item.isPaid ? "Đã thanh toán" : "Chưa thanh toán",
+      isPaid: item.isPaid? "Đã thanh toán": "Chưa thanh toán",
       updateAt: format(item.updateAt, "dd/MM/yyyy"),
     }));
   }),
@@ -88,6 +88,15 @@ export const feeRouter = createTRPCRouter({
   delete: publicProcedure.input(z.string()).mutation(async ({ ctx, input }) => {
     return ctx.db.fee.delete({
       where: { id: input },
+    });
+  }),
+  updatePay: publicProcedure.input(z.string()).mutation(async ({ ctx, input }) => {
+    const isPaid = (await ctx.db.fee.findUnique({
+        where: {id: input}
+    }))?.isPaid
+    return ctx.db.fee.update({
+      where: { id: input },
+      data: { isPaid: !isPaid}
     });
   }),
   getTotalContributionFee: publicProcedure.query(async ({ ctx }) => {

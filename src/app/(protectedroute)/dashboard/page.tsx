@@ -77,11 +77,7 @@ const Dashboard = () => {
     setIsResidentModalOpen(true);
   };
 
-  const residents = [
-  { id: '1', name: 'Nguyễn Văn A', phoneNumber: '0123456789', apartmentNo: 101, vehicle: 'Xe máy' },
-  { id: '2', name: 'Trần Thị B', phoneNumber: '0987654321', apartmentNo: 202, vehicle: 'Ô tô' },
-  // Thêm dữ liệu khác...
-];
+  const residents = occupiedApartments?.apartments.flatMap(apartment => apartment.residents) ?? []
 
   return (
     <div className="flex h-full flex-col text-gray-800">

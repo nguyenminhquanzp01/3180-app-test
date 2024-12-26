@@ -22,8 +22,8 @@ interface CellActionProps {
 export function CellAction({ data }: CellActionProps) {
   const router = useRouter();
   const [alertModalOpen, setAlertModalOpen] = useState(false);
-  const [isPaid, setIsPaid] = useState(false); // Declare the state for isPaid
-
+  const [isPaid, setIsPaid] = useState(data.isPaid=="Đã thanh toán"?true:false); // Declare the state for isPaid
+    console.log(data.isPaid=="Đã thanh toán")
   const { refetch } = api.fee.getAll.useQuery(undefined, {
     enabled: false,
   });
@@ -33,6 +33,7 @@ export function CellAction({ data }: CellActionProps) {
     const newState = !isPaid;
     setIsPaid(newState);
 
+
     // Gọi toast sau khi trạng thái đã được cập nhật
     if (newState) {
       toast.success("Thanh toán thành công!");
@@ -40,6 +41,17 @@ export function CellAction({ data }: CellActionProps) {
       toast.error("Hủy thanh toán!");
     }
   };
+  const { mutate: updatePay, isPending: updatePayIsLoading } =
+    api.fee.updatePay.useMutation({
+      onError: (err) => {
+        toast.error(err.message);
+      },
+      onSuccess: async (data) => {
+        setIsPaid((isPaid) => !isPaid)
+        toast.success("Thành công!");
+        await refetch();
+      },
+    });
 
   const { mutate: deleteFee, isPending: deleteFeeIsLoading } =
     api.fee.delete.useMutation({
@@ -62,7 +74,7 @@ export function CellAction({ data }: CellActionProps) {
               variant="ghost"
               size="icon"
               className="justify-center items-center hover:bg-secondary"
-              onClick={handleTogglePayment}
+              onClick={() => updatePay(data.id)}
             >
               {isPaid ? (
                 <X className="h-4 w-4 text-foreground" /> // Icon hủy thanh toán
