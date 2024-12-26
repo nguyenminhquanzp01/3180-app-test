@@ -73,14 +73,14 @@ export const columns: ColumnDef<FeeColumn>[] = [
     accessorKey: "isPaid",
     header: "Trạng thái",
   },
-  {
-    accessorKey: "notes",
-    header: "Ghi chú",
-  },
-  {
-    accessorKey: "updateAt",
-    header: "Cập nhật lần cuối",
-  },
+  // {
+  //   accessorKey: "notes",
+  //   header: "Ghi chú",
+  // },
+  // {
+  //   accessorKey: "updateAt",
+  //   header: "Cập nhật lần cuối",
+  // },
   {
     id: "actions",
     enableSorting: false,

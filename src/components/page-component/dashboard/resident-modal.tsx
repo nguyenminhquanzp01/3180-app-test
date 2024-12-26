@@ -44,6 +44,7 @@ const ResidentModal: React.FC<ModalProps> = ({ isOpen, onClose, residentList }) 
   };
 
   return (
+    
     <Dialog open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
       <DialogContent>
         <DialogHeader>
@@ -56,7 +57,7 @@ const ResidentModal: React.FC<ModalProps> = ({ isOpen, onClose, residentList }) 
               <AccordionTrigger>{resident.name}</AccordionTrigger>
               <AccordionContent>
                 <ul className="list-disc list-inside">
-                  <li>So dien thoai: {resident.phoneNumber}</li>
+                  <li>Số điện thoại: {resident.phoneNumber}</li>
                   <li>Số căn hộ: {resident.apartmentNo}</li>
                   <li>Phương tiện: {resident.vehicle}</li>
                 </ul>
@@ -64,6 +65,7 @@ const ResidentModal: React.FC<ModalProps> = ({ isOpen, onClose, residentList }) 
             </AccordionItem>
           ))}
         </Accordion>
+
         <div className="flex justify-end items-center pt-6 space-x-2">
           <Button
             variant="outline"

@@ -18,12 +18,15 @@ import { Overview } from "@/components/page-component/dashboard/overview";
 import UnpaidFeesModal from "@/components/page-component/dashboard/unpaid-fees-modal";
 import BreadCrumb from "@/components/ui/breadcrumb";
 import ResidentModal from "@/components/page-component/dashboard/resident-modal";
+import { Tabs } from "antd";
+import ResidentList from "@/components/page-component/dashboard/table-resident";
 
 const Dashboard = () => {
   const breadcrumbItems = [{ title: "", link: "" }];
   const [isApartmentModalOpen, setIsApartmentModalOpen] = useState(false);
   const [isUnpaidFeesModalOpen, setIsUnpaidFeesModalOpen] = useState(false);
   const [isResidentModalOpen, setIsResidentModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("contribution");
 
   const {
     data: residentCount = 0,
@@ -74,23 +77,29 @@ const Dashboard = () => {
     setIsResidentModalOpen(true);
   };
 
+  const residents = [
+  { id: '1', name: 'Nguyễn Văn A', phoneNumber: '0123456789', apartmentNo: 101, vehicle: 'Xe máy' },
+  { id: '2', name: 'Trần Thị B', phoneNumber: '0987654321', apartmentNo: 202, vehicle: 'Ô tô' },
+  // Thêm dữ liệu khác...
+];
+
   return (
-    <div className="flex h-full flex-col bg-gray-100 text-gray-800">
+    <div className="flex h-full flex-col text-gray-800">
       <div className="flex-1 space-y-4 p-8 pt-6">
         <BreadCrumb items={breadcrumbItems} />
-        <div className="flex items-center justify-between space-y-2">
-          <h2 className="text-4xl font-bold tracking-tight text-blue-600">
-            Thông tin chung
-          </h2>
-        </div>
-        <div className="space-y-6">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mt-6">
-            <Card className="shadow-md border border-gray-200 bg-white rounded-lg hover:shadow-lg">
+        
+        <div className="">
+          <div className="">
+
+            <Tabs>
+              <Tabs.TabPane tab={<div className="flex items-center"><DollarSign className="mr-2" /> Tổng quan </div>} key = "tab 1"> 
+                <div>          
+              <Card className="shadow-md border border-gray-200 bg-white rounded-lg hover:shadow-lg w-80 mb-10">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-blue-500">
                   Phí đóng góp tháng {format(new Date(), "MM/yyyy")}
                 </CardTitle>
-                <DollarSign className="h-6 w-6 text-blue-500" />
+                <DollarSign className="h-5 w-5 text-blue-500" />
               </CardHeader>
               <CardContent>
                 {isLoadingTotalContributionData ? (
@@ -113,7 +122,65 @@ const Dashboard = () => {
                 )}
               </CardContent>
             </Card>
-            <Card className="shadow-md border border-gray-200 bg-white rounded-lg hover:shadow-lg">
+            </div>
+
+            <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-7">
+            <Card className="col-span-4 shadow-md border border-gray-200 bg-white rounded-lg hover:shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-blue-600">Thanh toán gần đây</CardTitle>
+                <CardDescription>
+                  Chung cư BlueMoon có {recentPayments ? recentPayments.length : [].length} thanh toán mới
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                {isLoadingRecentPayments ? (
+                  <Loading />
+                ) : isErrorRecentPayments ? (
+                  <div className="text-2xl font-bold text-red-500">
+                    Error: {errorRecentPayments.message}
+                  </div>
+                ) : (
+                  <RecentPayments payments={recentPayments ? recentPayments : []} />
+                )}
+              </CardContent>
+            </Card>
+            
+            <Card className="col-span-3 shadow-md border border-gray-200 bg-white rounded-lg hover:shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-blue-600">Tổng quan</CardTitle>
+              </CardHeader>
+              <CardContent className="pl-2">
+                <Overview />
+              </CardContent>
+            </Card>
+          </div>
+
+        <ApartmentModal
+        isOpen={isApartmentModalOpen}
+        onClose={() => setIsApartmentModalOpen(false)}
+        apartmentList={occupiedApartments?.apartments ?? []}
+      />
+      <UnpaidFeesModal
+        isOpen={isUnpaidFeesModalOpen}
+        onClose={() => setIsUnpaidFeesModalOpen(false)}
+        apartmentList={apartmentsWithUnpaidFees.map((apartment) => ({
+          ...apartment,
+          unpaidFees: apartment.unpaidFees || [],
+        }))}
+      />
+      <ResidentModal
+        isOpen={isResidentModalOpen}
+        onClose={() => setIsResidentModalOpen(false)}
+        residentList={
+          occupiedApartments?.apartments.flatMap((apartment) => apartment.residents) ?? []
+        }
+      />
+          </Tabs.TabPane>
+
+
+              <Tabs.TabPane tab={<div className="flex items-center"><BookX className="mr-2" /> Phí chưa thu</div>}  key = "tab 2"> 
+                <div>
+              <Card className="shadow-md border border-gray-200 bg-white rounded-lg hover:shadow-lg w-80">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-blue-500">
                   Phí chưa thu
@@ -145,7 +212,13 @@ const Dashboard = () => {
                 </div>
               </CardContent>
             </Card>
-            <Card className="shadow-md border border-gray-200 bg-white rounded-lg hover:shadow-lg">
+                </div>
+              </Tabs.TabPane>
+
+              <Tabs.TabPane tab={<div className="flex items-center"><User className="mr-2" /> Cư dân Bluemoon</div>} key="tab 3">                 
+                <div>
+                  
+              <Card className="shadow-md border border-gray-200 bg-white rounded-lg hover:shadow-lg w-80">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-blue-500">
                   Cư dân BlueMoon
@@ -165,17 +238,30 @@ const Dashboard = () => {
                       {residentCount}
                     </div>
                   )}
-                  <Button
+                  {/* <Button
                     className="justify-center items-center bg-blue-500 text-white hover:bg-blue-600"
                     size="sm"
                     onClick={handleViewResidents}
                   >
                     Chi tiết
-                  </Button>
+                  </Button> */}
                 </div>
               </CardContent>
             </Card>
-            <Card className="shadow-md border border-gray-200 bg-white rounded-lg hover:shadow-lg">
+
+            <Card className="mt-10">
+            <ResidentList residentList={residents} isOpen={false} onClose={function (): void {
+                    throw new Error("Function not implemented.");
+                  } }/>
+            </Card>
+            
+                </div> 
+              </Tabs.TabPane>
+
+              <Tabs.TabPane tab={<div className="flex items-center"><Home className="mr-2" /> Căn hộ</div>}  key = "tab 4">
+              <div>
+
+              <Card className="shadow-md border border-gray-200 bg-white rounded-lg hover:shadow-lg w-80">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-blue-500">
                   Số căn hộ đang có cư trú
@@ -205,58 +291,14 @@ const Dashboard = () => {
                 </div>
               </CardContent>
             </Card>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
-            <Card className="col-span-4 shadow-md border border-gray-200 bg-white rounded-lg hover:shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-blue-600">Thanh toán gần đây</CardTitle>
-                <CardDescription>
-                  Chung cư BlueMoon có {recentPayments ? recentPayments.length : [].length} thanh toán mới
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                {isLoadingRecentPayments ? (
-                  <Loading />
-                ) : isErrorRecentPayments ? (
-                  <div className="text-2xl font-bold text-red-500">
-                    Error: {errorRecentPayments.message}
-                  </div>
-                ) : (
-                  <RecentPayments payments={recentPayments ? recentPayments : []} />
-                )}
-              </CardContent>
-            </Card>
-            <Card className="col-span-2 shadow-md border border-gray-200 bg-white rounded-lg hover:shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-blue-600">Tổng quan</CardTitle>
-              </CardHeader>
-              <CardContent className="pl-2">
-                <Overview />
-              </CardContent>
-            </Card>
+
+              </div>
+              </Tabs.TabPane>
+            </Tabs>
+            
           </div>
         </div>
       </div>
-      <ApartmentModal
-        isOpen={isApartmentModalOpen}
-        onClose={() => setIsApartmentModalOpen(false)}
-        apartmentList={occupiedApartments?.apartments ?? []}
-      />
-      <UnpaidFeesModal
-        isOpen={isUnpaidFeesModalOpen}
-        onClose={() => setIsUnpaidFeesModalOpen(false)}
-        apartmentList={apartmentsWithUnpaidFees.map((apartment) => ({
-          ...apartment,
-          unpaidFees: apartment.unpaidFees || [],
-        }))}
-      />
-      <ResidentModal
-        isOpen={isResidentModalOpen}
-        onClose={() => setIsResidentModalOpen(false)}
-        residentList={
-          occupiedApartments?.apartments.flatMap((apartment) => apartment.residents) ?? []
-        }
-      />
     </div>
   );
 };
