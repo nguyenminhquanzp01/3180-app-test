@@ -396,7 +396,7 @@ const PaymentForm = ({initialData}: PaymentFormProps) => {
                     value={field.value ? "true" : "false"}
                     defaultValue={field.value ? "true" : "false"}
                   >
-                    <FormControl>
+                    <FormControl> 
                       <SelectTrigger>
                         <SelectValue
                           defaultValue={field.value ? "true" : "false"}
@@ -405,7 +405,7 @@ const PaymentForm = ({initialData}: PaymentFormProps) => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="true">Đã thanh toán</SelectItem>
+                      <SelectItem value="true"> Đã thanh toán </SelectItem>
                       <SelectItem value="false">Chưa thanh toán</SelectItem>
                     </SelectContent>
                   </Select>

@@ -59,55 +59,5 @@ export const FeeList = ({data}: FeeClientProps) => {
         <DataTable columns={columns} data={data}/>
       </div>
     </>
-    // <>
-    //   <div className="flex items-start justify-between mb-4">
-    //     <div>
-    //       <Heading
-    //         title="Thông tin thu phí"
-    //         description="Danh sách phí cần thu trong hệ thống"
-    //       />
-    //     </div>
-    //     <div>
-    //       <div className="flex flex-col items-start">
-    //         <Heading
-    //           title="Tạo khoản thu mới"
-    //           description="Tạo khoản thu mới cho căn hộ"
-    //         />
-    //         <div className="mt-2 flex items-center space-x-2">
-    //           <div className="w-40">
-    //             <Select
-    //               onValueChange={setSelected}
-    //               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //               // @ts-ignore
-    //               value={selected}
-    //             >
-    //               <SelectConfirm>
-    //                 <SelectValue>{selected ? `Phòng ${selected}` : "Chọn căn hộ"}</SelectValue>
-    //               </SelectConfirm>
-    //               <SelectContent>
-    //                 {apartments.map((apartment) => (
-    //                   <SelectItem key={apartment.apartmentNo} value={String(apartment.apartmentNo)}>
-    //                     {`Phòng ${apartment.apartmentNo}`}
-    //                   </SelectItem>
-    //                 ))}
-    //               </SelectContent>
-    //             </Select>
-    //           </div>
-    //           <Button
-    //             onClick={handleConfirm}
-    //             disabled={!selected}
-    //             className="flex items-center"
-    //           >
-    //             <Plus className="mr-2 h-4 w-4"/> Thêm mới
-    //           </Button>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <Separator className="mb-4"/>
-    //   <div>
-    //     <DataTable columns={columns} data={data}/>
-    //   </div>
-    // </>
   );
 };

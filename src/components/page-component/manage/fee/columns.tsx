@@ -5,6 +5,8 @@ import { type ColumnDef } from "@tanstack/react-table";
 import {type FeeColumn} from "@/lib/validators";
 import {CellAction} from "@/components/page-component/manage/fee/cell-action";
 
+//bang thu phi 
+
 export const columns: ColumnDef<FeeColumn>[] = [
   {
     id: "select",
@@ -53,7 +55,7 @@ export const columns: ColumnDef<FeeColumn>[] = [
   },
   {
     accessorKey: "vehicleFee",
-    header: "Phí gửi xe",
+    header: "Phí gửi xe ne",
   },
   {
     accessorKey: "totalAmount",
@@ -70,15 +72,36 @@ export const columns: ColumnDef<FeeColumn>[] = [
   {
     accessorKey: "isPaid",
     header: "Trạng thái",
+    // cell: ({ row }) => {
+    //   const isPaid = row.getValue("isPaid");
+    //   return (
+    //     <div
+    //       style={{
+    //         backgroundColor: "green",
+    //         color: "white",
+    //         padding: "8px 16px",
+    //         borderRadius: "8px",
+    //         display: "inline-block",
+    //         width: "100%",
+    //         textAlign: "center",
+    //       }}
+    //     >
+    //       {isPaid ? "Đã thanh toán" : "Chưa thanh toán"}
+    //     </div>
+    //   );
+    // },
   },
-  {
-    accessorKey: "notes",
-    header: "Ghi chú",
-  },
-  {
-    accessorKey: "updateAt",
-    header: "Cập nhật lần cuối",
-  },
+  
+  
+  // {
+  //   accessorKey: "notes",  
+  //   header: "Ghi chú",
+  // },
+  // {
+  //   accessorKey: "updateAt",
+  //   header: "Cập nhật lần cuối",
+  // },
+  
   {
     id: "actions",
     enableSorting: false,

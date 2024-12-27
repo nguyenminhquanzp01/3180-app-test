@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { Loading } from "@/components/common/loading";
 // import { ResidentForm } from "@/components/page-component/manage/resident/resident-form";
 import { api } from "@/trpc/react";
@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import PaymentForm from "@/components/page-component/manage/fee/payment/payment-form";
 
-const Fee = ({id} : {id :string}) => {
-//   const router = useRouter();
+const Fee = ({ id }: { id: string }) => {
+  //   const router = useRouter();
 
   if (typeof id !== "string") {
     return <Loading />;

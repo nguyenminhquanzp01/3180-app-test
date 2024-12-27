@@ -22,7 +22,6 @@ export const MobileSidebar = () => {
                 <SheetTrigger asChild>
                     <div className="flex items-center justify-center gap-2">
                         <MenuIcon />
-                        <h1 className="text-lg font-semibold">BlueMoon</h1>
                     </div>
                 </SheetTrigger>
                 <SheetContent side="left" className="w-72">

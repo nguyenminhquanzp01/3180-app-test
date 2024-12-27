@@ -44,6 +44,7 @@ const ResidentModal: React.FC<ModalProps> = ({ isOpen, onClose, residentList }) 
   };
 
   return (
+    
     <Dialog open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
       <DialogContent>
         <DialogHeader>
@@ -64,6 +65,7 @@ const ResidentModal: React.FC<ModalProps> = ({ isOpen, onClose, residentList }) 
             </AccordionItem>
           ))}
         </Accordion>
+
         <div className="flex justify-end items-center pt-6 space-x-2">
           <Button
             variant="outline"

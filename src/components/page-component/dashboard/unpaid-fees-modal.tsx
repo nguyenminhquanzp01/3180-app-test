@@ -4,7 +4,6 @@ import { Dialog, DialogHeader, DialogContent, DialogTitle, DialogDescription } f
 import { ChevronLeftIcon, ChevronRightIcon, DoubleArrowLeftIcon, DoubleArrowRightIcon } from "@radix-ui/react-icons";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
-
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -48,8 +47,8 @@ const UnpaidFeesModal: React.FC<ModalProps> = ({ isOpen, onClose, apartmentList 
     <Dialog open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Thông tin các khoản phí chưa thanh toán</DialogTitle>
-          <DialogDescription>Danh sách các căn hộ có phí chưa thanh toán</DialogDescription>
+          <DialogTitle>Thông tin các khoản phí chưa được thanh toán</DialogTitle>
+          <DialogDescription>Danh sách căn hộ chưa thanh toán phí</DialogDescription>
         </DialogHeader>
         <Accordion type="multiple">
           {selectedApartments.map((apartment) => (

@@ -11,9 +11,9 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil, Trash2, Check, X } from "lucide-react";
 import { AlertModal } from "@/components/common/alert-modal";
-import {type FeeColumn} from "@/lib/validators";
+import { type FeeColumn } from "@/lib/validators";
 
 interface CellActionProps {
   data: FeeColumn;
@@ -22,10 +22,36 @@ interface CellActionProps {
 export function CellAction({ data }: CellActionProps) {
   const router = useRouter();
   const [alertModalOpen, setAlertModalOpen] = useState(false);
-
+  const [isPaid, setIsPaid] = useState(data.isPaid=="Đã thanh toán"?true:false); // Declare the state for isPaid
+    console.log(data.isPaid=="Đã thanh toán")
   const { refetch } = api.fee.getAll.useQuery(undefined, {
     enabled: false,
   });
+
+  const handleTogglePayment = () => {
+    // Tách riêng việc thay đổi trạng thái và gọi hàm toast
+    const newState = !isPaid;
+    setIsPaid(newState);
+
+
+    // Gọi toast sau khi trạng thái đã được cập nhật
+    if (newState) {
+      toast.success("Thanh toán thành công!");
+    } else {
+      toast.error("Hủy thanh toán!");
+    }
+  };
+  const { mutate: updatePay, isPending: updatePayIsLoading } =
+    api.fee.updatePay.useMutation({
+      onError: (err) => {
+        toast.error(err.message);
+      },
+      onSuccess: async (data) => {
+        setIsPaid((isPaid) => !isPaid)
+        toast.success("Thành công!");
+        await refetch();
+      },
+    });
 
   const { mutate: deleteFee, isPending: deleteFeeIsLoading } =
     api.fee.delete.useMutation({
@@ -40,13 +66,36 @@ export function CellAction({ data }: CellActionProps) {
 
   return (
     <div className="flex justify-center space-x-2">
+      {/* Nút Thanh Toán */}
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
               variant="ghost"
               size="icon"
-              className="hover:bg-secondary"
+              className="justify-center items-center hover:bg-secondary"
+              onClick={() => updatePay(data.id)}
+            >
+              {isPaid ? (
+                <X className="h-4 w-4 text-foreground" /> // Icon hủy thanh toán
+              ) : (
+                <Check className="h-4 w-4 text-foreground" /> // Icon thanh toán
+              )}
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>{isPaid ? "Hủy thanh toán" : "Thanh toán"}</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="justify-center items-center hover:bg-secondary"
               onClick={() => {
                 router.push(`/manage/fee/${data.id}`);
               }}
@@ -66,7 +115,7 @@ export function CellAction({ data }: CellActionProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="hover:bg-secondary"
+              className="justify-center items-center hover:bg-secondary"
               onClick={() => {
                 setAlertModalOpen(true);
               }}
@@ -83,8 +132,12 @@ export function CellAction({ data }: CellActionProps) {
       <AlertModal
         title="Xóa khoản phí này?"
         description="Không thể khôi phục."
-        name={"khoản phí: " + data.totalAmount.toString() +  " của căn hộ số " + data.apartmentNo.toString()}
-
+        name={
+          "khoản phí: " +
+          data.totalAmount.toString() +
+          " của căn hộ số " +
+          data.apartmentNo.toString()
+        }
         isOpen={alertModalOpen}
         onClose={() => setAlertModalOpen(false)}
         onConfirm={() => deleteFee(data.id)}

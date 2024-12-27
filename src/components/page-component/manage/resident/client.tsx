@@ -15,6 +15,8 @@ interface ResidentClientProps {
 export const ResidentClient = ({ data }: ResidentClientProps) => {
   const router = useRouter();
 
+  //them moi thong tin
+
   return (
     <>
       <div className="flex items-center justify-between">
@@ -23,11 +25,12 @@ export const ResidentClient = ({ data }: ResidentClientProps) => {
           description="Danh sách cư dân trong hệ thống"
         />
         <Button
+        className="items-center justify-center"
           onClick={() => {
             router.push("/manage/residents/new");
           }}
         >
-          <Plus className="mr-2 h-4 w-4" /> Thêm mới
+          <Plus className="mr-2 h-4 w-4" /> Thêm mới ne
         </Button>
       </div>
       <Separator />

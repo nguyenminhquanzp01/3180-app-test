@@ -58,6 +58,8 @@
         "@trpc/client": "^11.0.0-rc.446",
         "@trpc/react-query": "^11.0.0-rc.446",
         "@trpc/server": "^11.0.0-rc.446",
+        "antd": "^5.22.6",
+        "argon2": "^0.40.3",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.0.0",
         "cmdk": "^0.2.0",
@@ -83,8 +85,7 @@
         "tailwindcss-animate": "^1.0.7",
         "zod": "^3.23.3",
         "zod-i18n-map": "^2.27.0",
-        "zustand": "^4.4.7",
-        "argon2": "^0.40.3"
+        "zustand": "^4.4.7"
     },
     "devDependencies": {
         "@types/eslint": "^8.56.10",

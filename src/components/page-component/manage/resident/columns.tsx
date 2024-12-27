@@ -3,7 +3,9 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { type ColumnDef } from "@tanstack/react-table";
 import { type ResidentColumn } from "@/lib/validators";
-import { CellAction } from "./cell-action";
+import { CellAction } from "./cell-action"; 
+
+//quan ly dan cu
 
 export const columns: ColumnDef<ResidentColumn>[] = [
   {
@@ -32,7 +34,7 @@ export const columns: ColumnDef<ResidentColumn>[] = [
   },
   {
     accessorKey: "name",
-    header: "Họ & Tên",
+    header: "Họ và tên",
   },
   {
     accessorKey: "gender",
