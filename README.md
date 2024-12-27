@@ -1,29 +1,57 @@
-# Create T3 App
+# IT3180 Bluemoon
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+## Getting Started
 
-## What's next? How do I make an app with this?
+Follow these steps to set up and run the project on your local machine.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+### Prerequisites
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+Make sure you have the following installed on your system:
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+- [Node.js](https://nodejs.org/) (v16 or later)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+- [tsx](https://www.npmjs.com/package/tsx) (if seeding the database is required)
 
-## Learn More
+### Steps to Run the Project
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+1. **Clone the Repository**
+   ```bash
+   git clone [repository-url]
+   ```
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+2. **Navigate to the Project Directory**
+   ```bash
+   cd [repo directory]
+   ```
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+3. **Install Dependencies**
+   ```bash
+   npm i
+   ```
 
-## How do I deploy this?
+4. **Add Environment Variables**
+   - Create a `.env` file in the root directory of the project.
+   - Add the required environment variables (refer to `.env.example` if available).
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+5. **Push Database Schema (if applicable)**
+   ```bash
+   npm run db:push
+   ```
+
+6. *(Optional)* **Seed the Database**
+   ```bash
+   tsx prisma/seed.ts
+   ```
+
+7. **Start the Development Server**
+   ```bash
+   npm run dev
+   ```
+
+### Contributing
+
+Please follow the [contributing guidelines](CONTRIBUTING.md) if applicable. Open an issue if you encounter any problems or have questions.
+
+---
+
+Happy coding!
