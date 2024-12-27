@@ -17,18 +17,18 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-    // const session = await auth();
+  // const session = await auth();
   return (
     <html lang="en" className={`${GeistSans.variable} mdl-js`}>
       <body>
-        <SessionProvider >
-            {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem> */}
-                <Layout>
-                        <TRPCReactProvider>{children}</TRPCReactProvider>
-                        <Toaster />
-                        <ShadcnToaster />
-                </Layout>
-            {/* </ThemeProvider> */}
+        <SessionProvider>
+          {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem> */}
+          <Layout>
+            <TRPCReactProvider>{children}</TRPCReactProvider>
+            <Toaster />
+            <ShadcnToaster />
+          </Layout>
+          {/* </ThemeProvider> */}
         </SessionProvider>
       </body>
     </html>
