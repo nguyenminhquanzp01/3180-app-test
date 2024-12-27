@@ -72,24 +72,24 @@ export const columns: ColumnDef<FeeColumn>[] = [
   {
     accessorKey: "isPaid",
     header: "Trạng thái",
-    cell: ({ row }) => {
-      const isPaid = row.getValue("isPaid");
-      return (
-        <div
-          style={{
-            backgroundColor: isPaid ? "green" : "red",
-            color: "white",
-            padding: "8px 16px",
-            borderRadius: "8px",
-            display: "inline-block",
-            width: "100%",
-            textAlign: "center",
-          }}
-        >
-          {isPaid ? "Đã thanh toán" : "Chưa thanh toán"}
-        </div>
-      );
-    },
+    // cell: ({ row }) => {
+    //   const isPaid = row.getValue("isPaid");
+    //   return (
+    //     <div
+    //       style={{
+    //         backgroundColor: "green",
+    //         color: "white",
+    //         padding: "8px 16px",
+    //         borderRadius: "8px",
+    //         display: "inline-block",
+    //         width: "100%",
+    //         textAlign: "center",
+    //       }}
+    //     >
+    //       {isPaid ? "Đã thanh toán" : "Chưa thanh toán"}
+    //     </div>
+    //   );
+    // },
   },
   
   
