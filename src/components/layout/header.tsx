@@ -1,6 +1,6 @@
-import {ThemeToggle} from "@/components/layout/theme-toggle";
-import {cn} from "@/lib/utils";
-import {MobileSidebar} from "@/components/layout/mobile-sidebar";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
+import { cn } from "@/lib/utils";
+import { MobileSidebar } from "@/components/layout/mobile-sidebar";
 import Link from "next/link";
 import { MoonStar } from 'lucide-react';
 import {UserNav} from "@/components/layout/user-nav";
