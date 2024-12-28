@@ -39,7 +39,9 @@ export default function Header() {
           {path.includes('login') || path.includes('register') ? (<></>): sessionData?.user ? (
             <UserNav user={sessionData.user}/>
           ) : (
-            <Button size="sm"
+            <Button 
+                    className="justity-center items-center"
+                    size="sm"
                     onClick={() => {
                       void signIn();
                     }}

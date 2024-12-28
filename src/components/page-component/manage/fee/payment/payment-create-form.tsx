@@ -105,7 +105,7 @@ export function PaymentCreateForm() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between text-blue-500">
         <Heading
           title="Tạo khoản thu mới"
           description="Tạo khoản thu mới cho căn hộ"
@@ -253,10 +253,10 @@ export function PaymentCreateForm() {
         {/*@ts-ignore*/}
         <DatePicker date={dueDate} setDate={setDueDate}/>
         <div className="space-x-4">
-          <Button className="ml-auto" size="sm" onClick={handleBack}>
+          <Button className="ml-auto justity-center items-center" size="sm" onClick={handleBack}>
             Quay lại
           </Button>
-          <Button className="ml-auto" size="sm" onClick={onSubmit}>
+          <Button className="ml-auto justity-center items-center" size="sm" onClick={onSubmit}>
             Xác nhận
           </Button>
         </div>

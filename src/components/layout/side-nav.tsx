@@ -39,25 +39,25 @@ export function SideNav({ items, setOpen, className }: SideNavProps) {
     }, [isOpen]);
 
     return (
-        <nav className="space-y-2">
+        <nav className="space-y-2 ">
       {items.map((item) =>
         item.isChildren ? (
           <Accordion
             type="single"
             collapsible
-            className="space-y-2"
+            className="space-y-2 items-center justity-center"
             key={item.title}
             value={openItem}
             onValueChange={setOpenItem}
           >
-            <AccordionItem value={item.title} className="border-none ">
+            <AccordionItem value={item.title} className="border-none">
               <AccordionTrigger
                 className={cn(
                   buttonVariants({ variant: 'ghost' }),
-                  'group relative flex h-12 justify-between px-4 py-2 text-base duration-200 hover:bg-muted hover:no-underline',
+                  'group relative flex h-12 justify-between px-4 py-2 text-base duration-200 hover:bg-blue-500 hover:no-underline',
                 )}
               >
-                <div>
+                <div className="mr-3">
                   <item.icon className={cn('h-5 w-5', item.color)} />
                 </div>
                 <div
@@ -73,7 +73,7 @@ export function SideNav({ items, setOpen, className }: SideNavProps) {
                   <ChevronDownIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200" />
                 )}
               </AccordionTrigger>
-              <AccordionContent className="mt-2 space-y-4 pb-1">
+              <AccordionContent className="mt-2 space-y-4 pb-1 ">
                 {item.children?.map((child) => (
                   <Link
                     key={child.title}
@@ -83,9 +83,9 @@ export function SideNav({ items, setOpen, className }: SideNavProps) {
                     }}
                     className={cn(
                       buttonVariants({ variant: 'ghost' }),
-                      'group relative flex h-12 justify-start gap-x-3',
+                      'group relative flex h-12 justify-start items-center gap-x-3',
                       path === child.href &&
-                        'bg-muted font-bold hover:bg-muted',
+                        'bg-blue-500 font-bold hover:bg-muted',
                     )}
                   >
                     <child.icon className={cn('h-5 w-5', child.color)} />
@@ -111,14 +111,14 @@ export function SideNav({ items, setOpen, className }: SideNavProps) {
             }}
             className={cn(
               buttonVariants({ variant: 'ghost' }),
-              'group relative flex h-12 justify-start',
-              path === item.href && 'bg-muted font-bold hover:bg-muted',
+              'group relative flex h-12 justify-start items-center',
+              path === item.href && 'bg-blue-500 font-bold hover:bg-muted',
             )}
           >
             <item.icon className={cn('h-5 w-5', item.color)} />
             <span
               className={cn(
-                'absolute left-12 text-base duration-200',
+                'absolute left-12 text-base duration-200 ',
                 !isOpen && className,
               )}
             >

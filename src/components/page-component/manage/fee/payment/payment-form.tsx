@@ -219,18 +219,19 @@ const PaymentForm = ({initialData}: PaymentFormProps) => {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between text-blue-500">
         <Heading title={title} description={description}/>
         <div className="flex items-center space-x-4">
           <h2 className="font-bold text-2xl tracking-tight">Căn hộ số {apartmentNo}</h2>
           {isEditMode && (
             <Button
               disabled={loading}
+              className = "justity-center items-center"
               variant="destructive"
               size="icon"
               onClick={() => setOpen(true)}
             >
-              <Trash className="h-4 w-4"/>
+              <Trash className="ml-auto mr-auto h-4 w-4"/>
             </Button>
           )}
         </div>

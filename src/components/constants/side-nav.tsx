@@ -1,36 +1,36 @@
-import { LayoutDashboard, Info, Users, Landmark, CircleUserRoundIcon } from "lucide-react";
+import { BadgeEuro, UserRound, BookUser, Moon, List} from "lucide-react";
 import { type NavItem } from "@/types";
 
 export const NavItems: NavItem[] = [
   {
     title: "Trang chủ",
-    icon: LayoutDashboard,
+    icon: Moon,
     href: "/dashboard",
-    color: "text-sky-500",
+    color: "text-white-500",
   },
   {
     title: "Quản lý chung cư",
-    icon: Info,
+    icon: List,
     href: "/manage",
-    color: "text-orange-500",
+    color: "text-white-500",
     isChildren: true,
     children: [
       {
         title: "Quản lý dân cư",
-        icon: Users,
-        color: "text-red-500",
+        icon: BookUser,
+        color: "text-white-500",
         href: "/manage/residents",
       },
       {
         title: "Quản lý khoản thu",
-        icon: Landmark,
-        color: "text-red-500",
+        icon: BadgeEuro,
+        color: "text-white-500",
         href: "/manage/fee",
       },
       {
         title: "Quản lý tài khoản",
-        icon: CircleUserRoundIcon,
-        color: "text-red-500",
+        icon: UserRound,
+        color: "text-white-500",
         href: "/manage/account",
       },
     ],

@@ -61,7 +61,7 @@ return (
         onConfirm={onDelete}
         loading={loading}
       /> */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between text-blue-500">
         <Heading title={title} description={description} />
       </div>
       <Separator />

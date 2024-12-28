@@ -10,7 +10,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { LogOut, Blocks, Landmark, CircleUserRound, Users } from "lucide-react";
+import { LogOut, BadgeEuro, UserRound, BookUser, Moon, List} from "lucide-react";
 import { UserAvatar } from "@/components/layout/user-avatar";
 import { useRouter } from 'next/navigation';
 
@@ -55,7 +55,7 @@ export function UserNav({ user }: Props) {
                         }}
                     >
 
-                        <Blocks className=" mr-2 h-4 w-4" aria-hidden="true" />
+                        <Moon className=" mr-2 h-4 w-4" aria-hidden="true" />
                         Trang chủ
                     </Button>
                 </DropdownMenuItem>
@@ -72,7 +72,7 @@ export function UserNav({ user }: Props) {
                         }}
                     >
 
-                        <Users className="mr-2 h-4 w-4" aria-hidden="true" />
+                        <BookUser className="mr-2 h-4 w-4" aria-hidden="true" />
                         Quản lý dân cư
 
                     </Button>
@@ -89,7 +89,7 @@ export function UserNav({ user }: Props) {
                         }}
                     >
 
-                        <Landmark className="mr-2 h-4 w-4" aria-hidden="true" />
+                        <BadgeEuro className="mr-2 h-4 w-4" aria-hidden="true" />
                         Quản lý khoản thu
 
                     </Button>
@@ -106,7 +106,7 @@ export function UserNav({ user }: Props) {
                         }}
                     >
 
-                        <CircleUserRound className="mr-2 h-4 w-4" aria-hidden="true" />
+                        <UserRound className="mr-2 h-4 w-4" aria-hidden="true" />
                         Quản lý tài khoản
 
                     </Button>

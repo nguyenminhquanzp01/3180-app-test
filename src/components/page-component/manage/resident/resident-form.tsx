@@ -174,7 +174,7 @@ export const ResidentForm = ({ initialData }: ResidentFormProps) => {
 
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between text-blue-500">
         <Heading title={title} description={description} />
         {initialData && (
           <Button

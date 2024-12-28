@@ -33,13 +33,13 @@ export const FeeList = ({data}: FeeClientProps) => {
   return (
     <>
       <div className="flex items-start justify-between mb-4">
-        <div>
+        <div className="text-blue-500">
           <Heading
             title="Thông tin thu phí"
             description="Danh sách phí cần thu trong hệ thống"
           />
         </div>
-        <div className="flex flex-col items-end">
+        <div className="flex flex-col items-end text-blue-500">
           <Heading
             title="Tạo khoản thu mới"
             description="Tạo khoản thu mới cho căn hộ"
