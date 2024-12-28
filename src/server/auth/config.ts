@@ -6,7 +6,7 @@ import Credentails from "next-auth/providers/credentials"
 import { db } from "@/server/db";
 import Credentials from "next-auth/providers/credentials";
 import { loginSchema } from "@/lib/validators";
-// import { verify } from "argon2";
+import { verify } from "argon2";
 import { TokensIcon } from "@radix-ui/react-icons";
 
 
