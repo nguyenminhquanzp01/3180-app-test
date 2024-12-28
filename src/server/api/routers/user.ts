@@ -1,4 +1,4 @@
-// import { hash, verify } from "argon2";
+import { hash, verify } from "argon2";
 import { loginSchema, changePasswordSchema, deleteUserSchema } from "@/lib/validators";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { type Prisma } from "@prisma/client";
