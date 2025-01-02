@@ -52,7 +52,7 @@ const PaymentForm = ({initialData}: PaymentFormProps) => {
     (dueDate ? new Date(dueDate).toISOString().split("T")[0] :
       new Date(new Date(new Date().setMonth(new Date().getMonth() + 1)).setDate(0)).toISOString().split('T')[0])
   );
-
+  
   const calculateElectricityCost = (kWh: number): number => {
     const rates = [
       {max: 50, rate: 1806},
@@ -202,6 +202,7 @@ const PaymentForm = ({initialData}: PaymentFormProps) => {
         ...values,
         id: initialData.id,
         updateAt: new Date(),
+        dueDate: selectedDueDate?new Date(selectedDueDate):initialData.dueDate
       });
     } else {
       createFee({
@@ -376,7 +377,7 @@ const PaymentForm = ({initialData}: PaymentFormProps) => {
             <FormField
               control={form.control}
               name="dueDate"
-              render={() => (
+              render={({field}) => (
                 <FormItem>
                   <FormLabel>Hạn thanh toán:</FormLabel>
                   <FormControl>

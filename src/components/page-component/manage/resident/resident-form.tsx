@@ -202,7 +202,7 @@ export const ResidentForm = ({ initialData }: ResidentFormProps) => {
               control={form.control}
               name="name"
               render={({ field }) => {
-                console.log("Name field registered:", field);
+                // console.log("Name field registered:", field);
                 return (
                   <FormItem>
                     <FormLabel>Họ & Tên</FormLabel>
@@ -222,7 +222,7 @@ export const ResidentForm = ({ initialData }: ResidentFormProps) => {
               control={form.control}
               name="gender"
               render={({ field }) => {
-                console.log("Gender field registered:", field);
+                // console.log("Gender field registered:", field);
                 return (
                   <FormItem>
                     <FormLabel>Giới tính</FormLabel>
@@ -255,7 +255,7 @@ export const ResidentForm = ({ initialData }: ResidentFormProps) => {
               control={form.control}
               name="phoneNumber"
               render={({ field }) => {
-                console.log("Phone Number field registered:", field);
+                // console.log("Phone Number field registered:", field);
                 return (
                   <FormItem>
                     <FormLabel>Số điện thoại</FormLabel>
@@ -279,7 +279,7 @@ export const ResidentForm = ({ initialData }: ResidentFormProps) => {
               control={form.control}
               name="nationalId"
               render={({ field }) => {
-                console.log("National ID field registered:", field);
+                // console.log("National ID field registered:", field);
                 return (
                   <FormItem>
                     <FormLabel>CCCD / CMND</FormLabel>
@@ -303,7 +303,7 @@ export const ResidentForm = ({ initialData }: ResidentFormProps) => {
               control={form.control}
               name="address.apartmentNo"
               render={({ field }) => {
-                console.log("Apartment No field registered:", field);
+                // console.log("Apartment No field registered:", field);
                 return (
                   <FormItem>
                     <FormLabel>Số căn hộ</FormLabel>
@@ -330,7 +330,7 @@ export const ResidentForm = ({ initialData }: ResidentFormProps) => {
               control={form.control}
               name="address.permanentAddress"
               render={({ field }) => {
-                console.log("Permanent Address field registered:", field);
+                // console.log("Permanent Address field registered:", field);
                 return (
                   <FormItem>
                     <FormLabel>Địa chỉ thường trú</FormLabel>
@@ -350,7 +350,7 @@ export const ResidentForm = ({ initialData }: ResidentFormProps) => {
               control={form.control}
               name="address.currentAddress"
               render={({ field }) => {
-                console.log("Current Address field registered:", field);
+                // console.log("Current Address field registered:", field);
                 return (
                   <FormItem>
                     <FormLabel>Địa chỉ hiện tại</FormLabel>
@@ -370,7 +370,7 @@ export const ResidentForm = ({ initialData }: ResidentFormProps) => {
               control={form.control}
               name="vehicle"
               render={({ field }) => {
-                console.log("Vehicle field registered:", field);
+                // console.log("Vehicle field registered:", field);
                 return (
                   <FormItem>
                     <FormLabel>Phương tiện</FormLabel>
@@ -404,7 +404,7 @@ export const ResidentForm = ({ initialData }: ResidentFormProps) => {
               control={form.control}
               name="address.isStaying"
               render={({ field }) => {
-                console.log("Is Staying field registered:", field);
+                // console.log("Is Staying field registered:", field);
                 return (
                   <FormItem>
                     <FormLabel>Tình trạng cư trú</FormLabel>
@@ -441,7 +441,7 @@ export const ResidentForm = ({ initialData }: ResidentFormProps) => {
                 control={form.control}
                 name="address"
                 render={({ field }) => {
-                  console.log("Date Range field registered:", field);
+                //   console.log("Date Range field registered:", field);
                   return (
                     <FormItem>
                       <FormLabel>Chọn khoảng thời gian</FormLabel>

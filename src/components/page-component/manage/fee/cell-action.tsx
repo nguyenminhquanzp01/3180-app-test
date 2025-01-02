@@ -23,7 +23,6 @@ export function CellAction({ data }: CellActionProps) {
   const router = useRouter();
   const [alertModalOpen, setAlertModalOpen] = useState(false);
   const [isPaid, setIsPaid] = useState(data.isPaid=="Đã thanh toán"?true:false); // Declare the state for isPaid
-    console.log(data.isPaid=="Đã thanh toán")
   const { refetch } = api.fee.getAll.useQuery(undefined, {
     enabled: false,
   });
