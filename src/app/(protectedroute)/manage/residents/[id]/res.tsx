@@ -11,7 +11,7 @@ const Resident = ({id}: {id: string}) => {
 //   const { id } = router.query;
     const searchParams = useSearchParams();
     // const id = searchParams.get('id')
-    console.log(id)
+    // console.log(id)
   if (typeof id !== "string") {
     return <Loading />;
   }

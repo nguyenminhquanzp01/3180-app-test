@@ -1,4 +1,4 @@
-import Resident from "./dd"
+import Resident from "./res"
 
 export default async function ResidentExample({
     params,

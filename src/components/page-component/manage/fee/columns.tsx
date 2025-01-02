@@ -2,15 +2,15 @@
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { type ColumnDef } from "@tanstack/react-table";
-import {type FeeColumn} from "@/lib/validators";
-import {CellAction} from "@/components/page-component/manage/fee/cell-action";
+import { type FeeColumn } from "@/lib/validators";
+import { CellAction } from "@/components/page-component/manage/fee/cell-action";
 
-//bang thu phi 
+//bang thu phi
 
 export const columns: ColumnDef<FeeColumn>[] = [
   {
     id: "select",
-    header: ({table}) => (
+    header: ({ table }) => (
       <Checkbox
         checked={
           table.getIsAllPageRowsSelected() ||
@@ -21,7 +21,7 @@ export const columns: ColumnDef<FeeColumn>[] = [
         className="translate-y-[2px]"
       />
     ),
-    cell: ({row}) => (
+    cell: ({ row }) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
@@ -60,6 +60,13 @@ export const columns: ColumnDef<FeeColumn>[] = [
   {
     accessorKey: "totalAmount",
     header: "Tổng phí thu",
+    cell: ({ row }) => {
+        return (
+          <div className="text-red-500 font-bold">
+            {row.original.totalAmount}
+          </div>
+        )
+    },
   },
   {
     accessorKey: "contributionFee",
@@ -71,11 +78,10 @@ export const columns: ColumnDef<FeeColumn>[] = [
   },
   {
     accessorKey: "isPaid",
-    header: "Trạng thái",
+    header: "Trạng thái hiện tại",
     cell: ({ row }) => {
-      
       const isPaid = row.original.isPaid === "Đã thanh toán";
-  
+
       return (
         <div
           style={{
@@ -93,21 +99,19 @@ export const columns: ColumnDef<FeeColumn>[] = [
       );
     },
   },
-  
-  
-  
-  // {
-  //   accessorKey: "notes",  
-  //   header: "Ghi chú",
-  // },
-  // {
-  //   accessorKey: "updateAt",
-  //   header: "Cập nhật lần cuối",
-  // },
-  
+
+  {
+    accessorKey: "notes",
+    header: "Ghi chú",
+  },
+  {
+    accessorKey: "updateAt",
+    header: "Cập nhật lần cuối",
+  },
+
   {
     id: "actions",
     enableSorting: false,
-    cell: ({row}) => <CellAction data={row.original}/>,
+    cell: ({ row }) => <CellAction data={row.original} />,
   },
 ];
